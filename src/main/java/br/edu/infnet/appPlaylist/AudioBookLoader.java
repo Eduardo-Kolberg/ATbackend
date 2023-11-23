@@ -6,6 +6,7 @@ import br.edu.infnet.appPlaylist.service.AudioBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -13,12 +14,14 @@ import java.io.FileReader;
 import java.util.UUID;
 
 @Component
+@Order(1)
 public class AudioBookLoader implements ApplicationRunner {
 
     @Autowired
     AudioBookService service;
 
     @Override
+
     public void run(ApplicationArguments args) throws Exception {
         FileReader file = new FileReader("src/main/resources/FIles/AudioBooks.txt");
         BufferedReader leitura = new BufferedReader(file);

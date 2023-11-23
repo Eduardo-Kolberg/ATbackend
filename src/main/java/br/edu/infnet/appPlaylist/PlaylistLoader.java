@@ -7,17 +7,18 @@ import br.edu.infnet.appPlaylist.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
 @Component
-public class ZPlaylistLoader implements ApplicationRunner {
+@Order(5)
+public class PlaylistLoader implements ApplicationRunner {
 
     @Autowired
     PlaylistService service;
@@ -31,6 +32,7 @@ public class ZPlaylistLoader implements ApplicationRunner {
     AudioBookService audioBookService;
 
     @Override
+    @Order(5)
     public void run(ApplicationArguments args) throws Exception {
         FileReader file = new FileReader("src/main/resources/FIles/Playlists.txt");
         BufferedReader leitura = new BufferedReader(file);
@@ -48,12 +50,15 @@ public class ZPlaylistLoader implements ApplicationRunner {
             List<Usuario> value = new ArrayList<>(usuarioService.obterMap().values());
             playlist.setUsuario(value.get(0));
             for (Midia audioBook : audioBookService.obterMap().values()){
+                audioBook.setIdPlaylist(playlist.getId());
                 playlist.getMidiaList().add(audioBook);
             }
             for (Midia musica : musicaService.obterMap().values()){
+                musica.setIdPlaylist(playlist.getId());
                 playlist.getMidiaList().add(musica);
             }
             for (Midia podcast : podcastService.obterMap().values()){
+                podcast.setIdPlaylist(playlist.getId());
                 playlist.getMidiaList().add(podcast);
             }
 

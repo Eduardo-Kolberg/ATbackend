@@ -6,6 +6,7 @@ import br.edu.infnet.appPlaylist.service.MusicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -13,12 +14,14 @@ import java.io.FileReader;
 import java.util.UUID;
 
 @Component
+@Order(2)
 public class MusicaLoader implements ApplicationRunner {
 
     @Autowired
     MusicaService service;
 
     @Override
+
     public void run(ApplicationArguments args) throws Exception {
         FileReader file = new FileReader("src/main/resources/FIles/Musicas.txt");
         BufferedReader leitura = new BufferedReader(file);
