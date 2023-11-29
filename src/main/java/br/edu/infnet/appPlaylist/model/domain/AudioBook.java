@@ -1,8 +1,9 @@
 package br.edu.infnet.appPlaylist.model.domain;
 
-import org.springframework.stereotype.Component;
+import jakarta.persistence.Entity;
 
-@Component
+
+@Entity
 public class AudioBook extends Midia{
     private String autor;
     private String nomeSerie;

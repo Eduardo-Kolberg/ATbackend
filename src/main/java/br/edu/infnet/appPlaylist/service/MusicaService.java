@@ -1,22 +1,29 @@
 package br.edu.infnet.appPlaylist.service;
 
+import br.edu.infnet.appPlaylist.Repositories.AudioBookRepository;
+import br.edu.infnet.appPlaylist.Repositories.MusicaRepository;
+import br.edu.infnet.appPlaylist.model.domain.AudioBook;
 import br.edu.infnet.appPlaylist.model.domain.Musica;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class MusicaService {
 
-    private final Map<String, Musica> midiaMap = new HashMap<>();
+    @Autowired
+    MusicaRepository service;
+    private final Map<Integer, Musica> midiaMap = new HashMap<>();
 
     public void incluir(Musica midia){
-        midiaMap.put(midia.getId(),midia);
+        service.save(midia);
     }
 
-    public Map<String,Musica> obterMap(){
-        return midiaMap;
+    public Collection<Musica> obterMap(){
+        return (Collection<Musica>) service.findAll();
     }
 
 }

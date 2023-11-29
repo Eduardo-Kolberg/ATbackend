@@ -12,9 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 @Order(5)
@@ -46,19 +44,18 @@ public class PlaylistLoader implements ApplicationRunner {
 
             Playlist playlist = new Playlist();
             playlist.setNome(campos[0]);
-            playlist.setId(UUID.randomUUID().toString());
-            List<Usuario> value = new ArrayList<>(usuarioService.obterMap().values());
+            List<Usuario> value = (List<Usuario>) usuarioService.obterList();
             playlist.setUsuario(value.get(0));
-            for (Midia audioBook : audioBookService.obterMap().values()){
-                audioBook.setIdPlaylist(playlist.getId());
+            for (Midia audioBook : audioBookService.obterMap()){
+
                 playlist.getMidiaList().add(audioBook);
             }
-            for (Midia musica : musicaService.obterMap().values()){
-                musica.setIdPlaylist(playlist.getId());
+            for (Midia musica : musicaService.obterMap()){
+
                 playlist.getMidiaList().add(musica);
             }
-            for (Midia podcast : podcastService.obterMap().values()){
-                podcast.setIdPlaylist(playlist.getId());
+            for (Midia podcast : podcastService.obterMap()){
+
                 playlist.getMidiaList().add(podcast);
             }
 
@@ -67,7 +64,7 @@ public class PlaylistLoader implements ApplicationRunner {
             linha = leitura.readLine();
         }
 
-        for(Playlist playlist : service.obterMap().values()) {
+        for(Playlist playlist : service.obterMap()) {
             System.out.println("[Playlist] " + playlist);
         }
 

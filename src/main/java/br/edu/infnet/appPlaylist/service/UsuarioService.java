@@ -1,22 +1,26 @@
 package br.edu.infnet.appPlaylist.service;
 
+import br.edu.infnet.appPlaylist.Repositories.UsuarioRepository;
 import br.edu.infnet.appPlaylist.model.domain.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collection;
 
 @Service
 public class UsuarioService {
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-    private Map<String, Usuario> usuarioMap = new HashMap<>();
 
     public void incluir(Usuario usuario){
-        usuarioMap.put(usuario.getUID(),usuario);
+        usuarioRepository.save(usuario);
+
     }
 
-    public Map<String,Usuario> obterMap(){
-        return usuarioMap;
+    public Collection<Usuario> obterList(){
+        return (Collection<Usuario>)usuarioRepository.findAll();
+
     }
 
 }

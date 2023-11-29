@@ -1,25 +1,29 @@
 package br.edu.infnet.appPlaylist.model.domain;
 
-import org.springframework.stereotype.Component;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Entity
 public class Playlist {
-    private String id;
-
+//@OnetoMany(CascadeType.DETACH) botar em todos talvez para funcionar???
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String nome;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPlaylist")
+    private List<Midia> midiaList = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
-    private String nome;
-
-    private List<Midia> midiaList = new ArrayList<>();
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,7 +57,7 @@ public class Playlist {
                 "nome='" + nome + '\'' +
                 ", id='" + id + '\'' +
                 ", usuario=" + usuario +
-                ", midiaList=" + midiaList +
+                ", midiaList= " + midiaList +
                 '}';
     }
 }

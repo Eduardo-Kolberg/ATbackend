@@ -41,13 +41,12 @@ public class AudioBookLoader implements ApplicationRunner {
             midia.setAutor(campos[4]);
             midia.setNomeSerie(campos[5]);
             midia.setVolume(campos[6]);
-            midia.setId(UUID.randomUUID().toString());
             service.incluir(midia);
 
             linha = leitura.readLine();
         }
 
-        for(AudioBook audioBook : service.obterMap().values()) {
+        for(AudioBook audioBook : service.obterMap()) {
             System.out.println("[AudioBook] " + audioBook);
         }
 

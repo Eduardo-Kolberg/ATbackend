@@ -36,15 +36,15 @@ public class PodcastLoader implements ApplicationRunner {
             midia.setDuracao(Double.parseDouble(campos[1]));
             midia.setFavorita(Boolean.parseBoolean(campos[2]));
             midia.setTipo(campos[3]);
-            midia.setApresentadores(campos[4]);
-            midia.setConvidado(campos[5]);
-            midia.setId(UUID.randomUUID().toString());
+            midia.setEpisodio(Integer.parseInt(campos[4]));
+            midia.setApresentadores(campos[5]);
+            midia.setConvidado(campos[6]);
             service.incluir(midia);
 
             linha = leitura.readLine();
         }
 
-        for(Podcast podcast : service.obterMap().values()) {
+        for(Podcast podcast : service.obterMap()) {
             System.out.println("[Podcast] " + podcast);
         }
 

@@ -1,12 +1,20 @@
 package br.edu.infnet.appPlaylist.model.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Midia {
-    protected String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Integer id;
     protected String nome;
     protected double duracao;
     protected boolean favorita;
     protected String tipo;
-    protected String idPlaylist;
+    @ManyToOne
+    @JoinColumn(name = "idPlaylist")
+    private Playlist playlist;
 
     public String getNome() {
         return nome;
@@ -16,11 +24,11 @@ public abstract class Midia {
         this.nome = nome;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -48,11 +56,11 @@ public abstract class Midia {
         this.tipo = tipo;
     }
 
-    public String getIdPlaylist() {
-        return idPlaylist;
+    public Playlist getPlaylist() {
+        return playlist;
     }
 
-    public void setIdPlaylist(String idPlaylist) {
-        this.idPlaylist = idPlaylist;
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
     }
 }

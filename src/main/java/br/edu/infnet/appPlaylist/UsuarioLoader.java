@@ -10,9 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+
 @Component
 @Order(4)
 public class UsuarioLoader implements ApplicationRunner {
@@ -36,13 +34,12 @@ public class UsuarioLoader implements ApplicationRunner {
             usuario.setNome(campos[0]);
             usuario.setCpf(campos[1]);
             usuario.setEmail(campos[2]);
-            usuario.setUID(UUID.randomUUID().toString());
             service.incluir(usuario);
 
             linha = leitura.readLine();
         }
 
-        for(Usuario usuario : service.obterMap().values()) {
+        for(Usuario usuario : service.obterList()) {
             System.out.println("[Usuário] " + usuario);
         }
 

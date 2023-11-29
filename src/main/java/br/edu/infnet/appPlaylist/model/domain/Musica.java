@@ -1,5 +1,8 @@
 package br.edu.infnet.appPlaylist.model.domain;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Musica extends Midia{
     private String estilo;
     private String nomeArtista;

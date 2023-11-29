@@ -1,9 +1,10 @@
 package br.edu.infnet.appPlaylist.model.domain;
 
 
+import jakarta.persistence.Entity;
 import org.springframework.stereotype.Component;
 
-@Component
+@Entity
 public class Podcast extends Midia{
 
     private int episodio;

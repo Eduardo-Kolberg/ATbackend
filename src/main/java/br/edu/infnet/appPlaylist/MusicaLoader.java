@@ -40,13 +40,12 @@ public class MusicaLoader implements ApplicationRunner {
             musica.setTipo(campos[3]);
             musica.setEstilo(campos[4]);
             musica.setNomeArtista(campos[5]);
-            musica.setId(UUID.randomUUID().toString());
             service.incluir(musica);
 
             linha = leitura.readLine();
         }
 
-        for(Musica musica : service.obterMap().values()) {
+        for(Musica musica : service.obterMap()) {
             System.out.println("[Musica] " + musica);
         }
 
