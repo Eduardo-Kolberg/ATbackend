@@ -1,15 +1,11 @@
 package br.edu.infnet.appPlaylist.service;
 
 import br.edu.infnet.appPlaylist.Repositories.PlaylistRepository;
-import br.edu.infnet.appPlaylist.model.domain.Musica;
 import br.edu.infnet.appPlaylist.model.domain.Playlist;
-import br.edu.infnet.appPlaylist.model.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class PlaylistService {
@@ -22,8 +18,12 @@ public class PlaylistService {
         service.save(playlist);
     }
 
-    public Collection<Playlist> obterMap(){
+    public Collection<Playlist> obterPlaylist(){
         return (Collection<Playlist>) service.findAll();
+    }
+
+    public void excluir(Integer id){
+        service.deleteById(id);
     }
 
 }

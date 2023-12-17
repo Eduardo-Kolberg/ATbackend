@@ -1,4 +1,4 @@
-Eduardo Kolberg;12323434599;Eddie@Kolberg.com
-Fulano;12312312312;Fulano@terra.com
-Zezinho;23423423423;jose@uol.com
-Joãozinho;34534534534;Joãozinho@email.com
+Eduardo Kolberg;12323434599;Eddie@Kolberg.com;93115750
+Fulano;12312312312;Fulano@terra.com;59144150
+Zezinho;23423423423;jose@uol.com;69020200
+Joãozinho;34534534534;Joãozinho@email.com;58038381

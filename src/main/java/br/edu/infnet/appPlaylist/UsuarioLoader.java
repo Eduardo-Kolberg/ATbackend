@@ -1,6 +1,9 @@
 package br.edu.infnet.appPlaylist;
 
+
+import br.edu.infnet.appPlaylist.model.domain.Endereco;
 import br.edu.infnet.appPlaylist.model.domain.Usuario;
+import br.edu.infnet.appPlaylist.service.EnderecoService;
 import br.edu.infnet.appPlaylist.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -16,7 +19,9 @@ import java.io.FileReader;
 public class UsuarioLoader implements ApplicationRunner {
 
     @Autowired
-    UsuarioService service;
+    UsuarioService usuarioService;
+    @Autowired
+    EnderecoService enderecoService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -34,12 +39,13 @@ public class UsuarioLoader implements ApplicationRunner {
             usuario.setNome(campos[0]);
             usuario.setCpf(campos[1]);
             usuario.setEmail(campos[2]);
-            service.incluir(usuario);
-
+            Endereco endereco = enderecoService.buscarCep(campos[3]);
+            usuario.setEndereco(endereco);
+            usuarioService.incluir(usuario);
             linha = leitura.readLine();
         }
 
-        for(Usuario usuario : service.obterList()) {
+        for(Usuario usuario : usuarioService.obterList()) {
             System.out.println("[Usuário] " + usuario);
         }
 

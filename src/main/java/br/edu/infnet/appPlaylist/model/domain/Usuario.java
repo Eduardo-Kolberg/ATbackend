@@ -2,6 +2,7 @@ package br.edu.infnet.appPlaylist.model.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,10 +15,21 @@ public class Usuario {
     private String cpf;
     private String email;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Endereco endereco;
+
     @OneToMany
     @JoinColumn(name = "idUsuario")
-    private List<Playlist> playlistList;
+    private List<Playlist> playlistList = new ArrayList<>();
 
+
+    public List<Playlist> getPlaylistList() {
+        return playlistList;
+    }
+
+    public void setPlaylistList(List<Playlist> playlistList) {
+        this.playlistList = playlistList;
+    }
 
     public String getNome() {
         return nome;
@@ -51,6 +63,14 @@ public class Usuario {
         this.id = id;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -58,6 +78,7 @@ public class Usuario {
                 ", nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", email='" + email + '\'' +
+                ", Endereço='" + endereco + '\'' +
                 '}';
     }
 }

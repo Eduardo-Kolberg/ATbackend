@@ -46,15 +46,15 @@ public class PlaylistLoader implements ApplicationRunner {
             playlist.setNome(campos[0]);
             List<Usuario> value = (List<Usuario>) usuarioService.obterList();
             playlist.setUsuario(value.get(0));
-            for (Midia audioBook : audioBookService.obterMap()){
+            for (Midia audioBook : audioBookService.obterAudioBook()){
 
                 playlist.getMidiaList().add(audioBook);
             }
-            for (Midia musica : musicaService.obterMap()){
+            for (Midia musica : musicaService.obterMusicas()){
 
                 playlist.getMidiaList().add(musica);
             }
-            for (Midia podcast : podcastService.obterMap()){
+            for (Midia podcast : podcastService.obterPodCast()){
 
                 playlist.getMidiaList().add(podcast);
             }
@@ -64,7 +64,7 @@ public class PlaylistLoader implements ApplicationRunner {
             linha = leitura.readLine();
         }
 
-        for(Playlist playlist : service.obterMap()) {
+        for(Playlist playlist : service.obterPlaylist()) {
             System.out.println("[Playlist] " + playlist);
         }
 

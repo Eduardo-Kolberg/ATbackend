@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.UUID;
 
 @Component
 @Order(3)
@@ -44,7 +43,7 @@ public class PodcastLoader implements ApplicationRunner {
             linha = leitura.readLine();
         }
 
-        for(Podcast podcast : service.obterMap()) {
+        for(Podcast podcast : service.obterPodCast()) {
             System.out.println("[Podcast] " + podcast);
         }
 

@@ -1,7 +1,6 @@
 package br.edu.infnet.appPlaylist;
 
 import br.edu.infnet.appPlaylist.model.domain.Musica;
-import br.edu.infnet.appPlaylist.model.domain.Usuario;
 import br.edu.infnet.appPlaylist.service.MusicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.UUID;
 
 @Component
 @Order(2)
@@ -45,7 +43,7 @@ public class MusicaLoader implements ApplicationRunner {
             linha = leitura.readLine();
         }
 
-        for(Musica musica : service.obterMap()) {
+        for(Musica musica : service.obterMusicas()) {
             System.out.println("[Musica] " + musica);
         }
 

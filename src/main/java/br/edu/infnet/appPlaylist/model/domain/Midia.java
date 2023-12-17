@@ -1,5 +1,7 @@
 package br.edu.infnet.appPlaylist.model.domain;
 
+import br.edu.infnet.appPlaylist.utils.TimeUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public abstract class Midia {
     protected double duracao;
     protected boolean favorita;
     protected String tipo;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idPlaylist")
     private Playlist playlist;
@@ -32,8 +35,8 @@ public abstract class Midia {
         this.id = id;
     }
 
-    public double getDuracao() {
-        return duracao;
+    public String getDuracao() {
+        return TimeUtils.getDuration(duracao);
     }
 
     public void setDuracao(double duracao) {
@@ -55,6 +58,7 @@ public abstract class Midia {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
 
     public Playlist getPlaylist() {
         return playlist;

@@ -1,5 +1,6 @@
 package br.edu.infnet.appPlaylist.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 
 @Entity
 public class Playlist {
-//@OnetoMany(CascadeType.DETACH) botar em todos talvez para funcionar???
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -15,6 +16,8 @@ public class Playlist {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "idPlaylist")
     private List<Midia> midiaList = new ArrayList<>();
+
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
